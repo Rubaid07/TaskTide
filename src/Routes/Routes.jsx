@@ -6,10 +6,12 @@ import AddTask from "../pages/AddTask";
 import MyTask from "../pages/MyTask";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Error from "../pages/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Error></Error>,
     Component: MainLayouts,
     children: [
       {
