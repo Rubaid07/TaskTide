@@ -3,3 +3,21 @@
 ul{
     gap: 20px;
 }
+.hero-slider .slick-prev::before,
+.hero-slider .slick-next::before{
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 1 !important;
+}
+
+.hero-slider .slick-prev, .slick-next {
+  z-index: 1;
+}
+
+.hero-slider .slick-prev {
+  left: 15px !important;
+}
+
+.hero-slider .slick-next {
+  right: 15px !important;
+}
