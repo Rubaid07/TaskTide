@@ -7,6 +7,7 @@ import MyTask from "../pages/MyTask";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
+import PrivateRoute from "../provider/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -16,27 +17,31 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        element: <Home></Home>
       },
       {
         path: '/browse-task',
-        Component: Browse
+        element: <Browse></Browse>
       },
       {
         path: '/add-task',
-        Component: AddTask
+        element: <PrivateRoute>
+          <AddTask></AddTask>
+        </PrivateRoute>
       },
       {
         path: '/my-task',
-        Component: MyTask
+        element: <PrivateRoute>
+          <MyTask></MyTask>
+        </PrivateRoute>
       },
       {
         path: '/login',
-        Component: Login
+        element: <Login></Login>
       },
       {
         path: '/register',
-        Component: Register
+        element: <Register></Register>
       }
     ]
   },
