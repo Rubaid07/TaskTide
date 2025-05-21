@@ -4,6 +4,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const AddTask = () => {
   const {user} = use(AuthContext)
+  console.log(user);
 
   const handleAddTask = e => {
     e.preventDefault()
@@ -16,8 +17,9 @@ const AddTask = () => {
 
     const email = user?.email
     const name = user?.displayName
+    const photo = user?.photoURL
 
-    const newTask = { title, category, description, deadline, budget, email, name };
+    const newTask = { title, category, description, deadline, budget, email, name, photo };
     console.log(newTask);
 
     fetch('http://localhost:3000/tasks', {

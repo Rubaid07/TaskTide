@@ -7,7 +7,7 @@ const Featured = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/tasks')
+        fetch('http://localhost:3000/tasks/featured')
             .then(res => res.json())
             .then(data => {
                 setTasks(data);
