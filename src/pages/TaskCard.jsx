@@ -1,0 +1,34 @@
+import React from 'react';
+
+const TaskCard = ({ task }) => {
+  const { title, category, deadline, budget, name, _id } = task;
+
+  return (
+    <div className="bg-base-100 border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition duration-300">
+        
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+
+      <div className="flex justify-between items-center mb-3">
+        <span className="text-xs bg-blue-200 text-blue-500 px-2 py-1 rounded-full font-medium">{category}</span>
+        <span className="text-sm font-bold text-green-600">${budget}</span>
+      </div>
+
+      <p className="text-sm text-gray-500 mb-4">
+        <span className="font-medium">Deadline:</span>{' '}
+        {new Date(deadline).toLocaleDateString()}
+      </p>
+
+      <div className="flex justify-between items-center mt-4 pt-3 border-t">
+        <p className="text-sm text-gray-500"> {name}</p>
+        <a
+          href={`/task/${_id}`}
+          className="text-sm text-sky-600 hover:underline font-medium"
+        >
+          View Details →
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default TaskCard;

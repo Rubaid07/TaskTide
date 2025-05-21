@@ -73,7 +73,7 @@ const Navbar = () => {
               opacity-0 invisible group-hover:opacity-100 group-hover:visible 
               transition-all duration-200 z-50">
                 <p className="text-sm font-semibold">{user?.displayName}</p>
-                <p className="text-xs text-gray-200 mb-2">{user?.email}</p>
+                <p className="text-xs text-gray-400 mb-2">{user?.email}</p>
                 <button
                   onClick={handleLogout}
                   className="btn btn-sm bg-red-500 text-white hover:bg-red-600 mt-2"

@@ -37,7 +37,7 @@ const AddTask = () => {
   }
     return (
          <div className="max-w-2xl mx-auto my-12 p-8 bg-base-100 rounded-lg shadow-xl">
-  <h2 className="text-3xl font-bold mb-6 text-center text-sky-600">Add a New Task</h2>
+  <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-sky-300 to-indigo-700 bg-clip-text text-transparent">Add a New Task</h2>
   
   <form onSubmit={handleAddTask} className="grid grid-cols-1 gap-5">
     <input 
