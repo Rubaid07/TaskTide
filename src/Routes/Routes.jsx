@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import MainLayouts from "../layouts/MainLayouts";
 import Home from "../pages/Home";
-// import Browse from "../pages/Browse";
 import AddTask from "../pages/AddTask";
 import MyTask from "../pages/MyTask";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
 import PrivateRoute from "../provider/PrivateRoute";
+import Browse from "../pages/Browse";
 
 export const router = createBrowserRouter([
   {
@@ -19,10 +19,10 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home></Home>
       },
-      // {
-      //   path: '/browse-task',
-      //   element: <Browse></Browse>
-      // },
+      {
+        path: '/browse-task',
+        element: <Browse></Browse>
+      },
       {
         path: '/add-task',
         element: <PrivateRoute>

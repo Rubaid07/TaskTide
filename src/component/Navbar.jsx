@@ -38,10 +38,12 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow-md">
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 pb-5 shadow-md">
               {links}
+              {user ? ("") : (<>
               <Link to='/login' className="md:btn md:px-[30px] md:py-[15px]  border border-sky-400 hover:bg-sky-400 hover:text-white md:text-sky-400 md:border-sky-400 text-sky-400 rounded-sm px-3 py-2">Login</Link>
               <Link to='/register' className="md:btn md:px-[30px] md:py-[15px] md:bg-sky-400 bg-sky-400 hover:bg-sky-500 md:text-white md:flex rounded-sm px-3 py-2 text-white">Register</Link>
+              </>)}
             </ul>
           </div>
           <img className='md:w-50 w-30' src={tasktide} alt="" />

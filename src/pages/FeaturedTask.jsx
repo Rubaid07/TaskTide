@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Loading from '../component/Loading';
 import TaskCard from './TaskCard';
 
-const Browse = () => {
+const Featured = () => {
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -31,4 +31,4 @@ const Browse = () => {
     );
 };
 
-export default Browse;
+export default Featured;

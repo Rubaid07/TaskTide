@@ -38,7 +38,7 @@ const Login = () => {
     }
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-364px)]">
-            <div className="card bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-2xl">
+            <div className="card bg-base-100 mt-8 w-full max-w-sm mx-auto shrink-0 shadow-2xl">
                 <h1 className='text-center font-bold text-2xl mt-4'>Login your account</h1>
                 <form onSubmit={handleLogin} className="card-body">
                     <fieldset className="fieldset">
