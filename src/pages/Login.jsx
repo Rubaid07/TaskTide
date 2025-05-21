@@ -1,33 +1,36 @@
-import React, { use } from 'react';
-import { Link, useNavigate } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate()
-    const { signIn } = use(AuthContext)
-    const { signInWithGoogle } = use(AuthContext)
+    const { signIn } = useContext(AuthContext)
+    const { signInWithGoogle } = useContext(AuthContext)
+    const [error, setError] = useState("")
+    const location = useLocation()
+    console.log(location);
+
     const handleLogin = e => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-
         signIn(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                toast.success("Logged in successfully")
+                navigate(`${location.state ? location.state : "/"}`)
             })
             .catch(error => {
-                const errorMessage = error.message;
-                toast.error(errorMessage)
+                const errorCode = error.code
+                setError(errorCode)
             })
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(result => {
                 toast.success("Logged in successfully")
-                // navigate(`${location.state ? location.state : "/"}`)
+                navigate(`${location.state ? location.state : "/"}`)
             })
             .catch(error => {
 
@@ -46,6 +49,7 @@ const Login = () => {
                         <label className="label">Password</label>
                         <input name='password' type="password" className="input" placeholder="Password" required />
                         <div><a className="link link-hover">Forgot password?</a></div>
+                        {error && <p className='text-red-400 text-xs'>{error}</p>}
 
                         <button type='submit' className="btn bg-sky-400 text-white hover:bg-sky-500 mt-4">Login</button>
 

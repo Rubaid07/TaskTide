@@ -1,12 +1,13 @@
-import React, { use } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-    const { signInWithGoogle } = use(AuthContext)
-    const { createUser, setUser } = use(AuthContext)
+    const { signInWithGoogle } = useContext(AuthContext)
+    const { createUser, setUser, updateUser } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [passwordError, setPasswordError] = useState("")
     const handleRegister = e => {
         e.preventDefault()
         const form = e.target;
@@ -14,10 +15,29 @@ const Register = () => {
         const email = form.email.value
         const password = form.password.value
         const photo = form.photo.value
-        console.log({ name, email, password, photo });
+        if (password.length < 6) {
+            setPasswordError("Password must be at least 6 characters")
+            return
+        }
+        if (!/[A-Z]/.test(password)) {
+            setPasswordError("Password must contain at least one uppercase letter")
+            return
+        }
+        if (!/[a-z]/.test(password)) {
+            setPasswordError("Password must contain at least one lowercase letter")
+            return
+        }
         createUser(email, password)
             .then(result => {
                 const user = result.user;
+                updateUser({ displayName: name, photoURL: photo }).then(() => {
+                    setUser({ ...user, displayName: name, photoURL: photo })
+                    toast.success("Sign in successfully")
+                    navigate("/")
+                }).catch(error => {
+                    // toast.error(error)
+                    setUser(user)
+                })
                 setUser(user)
             })
             .catch(error => {
@@ -54,6 +74,7 @@ const Register = () => {
                         {/* photo */}
                         <label className="label">Photo URL</label>
                         <input name='photo' type="text" className="input" placeholder="Photo URL" required />
+                        {passwordError && <p className='text-red-400 text-xs'>{passwordError}</p>}
 
                         <button type='submit' className="btn bg-sky-400 text-white hover:bg-sky-500 mt-4">Register</button>
                         <button onClick={handleGoogleSignIn} className="btn bg-white mt-2 text-black border-[#e5e5e5]">
