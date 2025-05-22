@@ -4,7 +4,6 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const AddTask = () => {
   const { user } = use(AuthContext)
-  console.log(user);
 
   const handleAddTask = e => {
     e.preventDefault()
@@ -31,7 +30,6 @@ const AddTask = () => {
       bidsCount: 0,
       bidders: []
     };
-    console.log(newTask);
 
     fetch('http://localhost:3000/tasks', {
       method: 'POST',
