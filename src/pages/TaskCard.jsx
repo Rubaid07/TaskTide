@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaCalendarAlt, FaTag, FaUserAlt } from 'react-icons/fa';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { Link } from 'react-router';
 
 const TaskCard = ({ task }) => {
   const { title, category, deadline, budget, name, _id, photo } = task;
@@ -34,12 +36,12 @@ const TaskCard = ({ task }) => {
           }
           
            {name}</p>
-        <a
-          href={`/task/${_id}`}
-          className="text-sm text-sky-600 hover:underline font-medium"
+        <Link
+          to={`/task/${_id}`}
+          className="text-sm text-sky-600 hover:underline flex items-center gap-2 font-medium"
         >
-          View Details →
-        </a>
+          View Details <FaArrowRightLong />
+        </Link>
       </div>
     </div>
   );

@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import TaskCard from './TaskCard';
+import Loading from '../component/Loading';
 
 const Browse = () => {
   const [tasks, setTasks] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('http://localhost:3000/tasks') // তোমার server URL
+    fetch('http://localhost:3000/tasks')
       .then(res => res.json())
-      .then(data => setTasks(data));
+      .then(data => {
+        setTasks(data)
+        setLoading(false);
+      });
   }, []);
+  if (loading) return <Loading></Loading>;
 
   return (
     <div className="w-11/12 md:w-10/12 mx-auto my-12 px-4">

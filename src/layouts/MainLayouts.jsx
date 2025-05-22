@@ -1,14 +1,18 @@
 import React from 'react';
 import Navbar from '../component/Navbar';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import Footer from '../component/Footer';
+import Loading from '../component/Loading';
 
 const MainLayouts = () => {
+    const navigation = useNavigation()
     return (
         <div>
             <Navbar></Navbar>
             <div className="min-h-[calc(100vh-318px)] md:w-10/12 mx-auto">
-                <Outlet></Outlet>
+                {
+                    navigation.state === "loading"? <Loading></Loading>: <Outlet></Outlet>
+                }
             </div>
             <Footer></Footer>
         </div>
