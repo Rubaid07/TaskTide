@@ -3,6 +3,7 @@ import Hero from './Hero';
 import FeaturedTask from './FeaturedTask';
 import Platform from './Platform';
 import HowItWorks from './HowItWork';
+import PlatformStats from './PlatformStats';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <Hero></Hero>
             <FeaturedTask></FeaturedTask>
             <HowItWorks></HowItWorks>
+            <PlatformStats></PlatformStats>
             <Platform></Platform>
         </div>
     );

@@ -45,7 +45,7 @@ const TaskDetails = () => {
   }
 
   return (
-  <div className="max-w-3xl mx-auto p-6 space-y-6  rounded-xl shadow-lg mt-20">
+  <div className="max-w-3xl mx-auto py-6 px-4 space-y-6 border border-base-200 rounded-xl shadow-lg md:my-20 my-10">
 
   <div className="flex items-center gap-5 pb-4 border-b border-gray-700">
     <img
@@ -60,7 +60,7 @@ const TaskDetails = () => {
   </div>
 
   <div className="space-y-4">
-    <h1 className="text-3xl font-medium">{task.title}</h1>
+    <h1 className="md:text-3xl text-2xl font-medium">{task.title}</h1>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-400">
       <p className="flex items-center font-medium gap-3">
         Category:
