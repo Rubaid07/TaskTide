@@ -9,6 +9,7 @@ import Error from "../pages/Error";
 import PrivateRoute from "../provider/PrivateRoute";
 import Browse from "../pages/Browse";
 import TaskDetails from "../pages/TaskDetails";
+import UpdateTask from "../pages/UpdateTask";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,12 @@ export const router = createBrowserRouter([
         path: '/task/:id',
         element: <PrivateRoute>
           <TaskDetails></TaskDetails>
+        </PrivateRoute>
+      },
+      {
+        path: '/update-task/:id',
+        element: <PrivateRoute>
+          <UpdateTask></UpdateTask>
         </PrivateRoute>
       },
       {

@@ -38,10 +38,10 @@ const MyTaskCard = ({ task, tasks, setTasks }) => {
       <div className="flex w-full justify-between items-center">
         <div>
           <h2 className="text-xl font-semibold">{title}</h2>
-          <p className="text-gray-400">Category: {category}</p>
-          <p className="text-gray-400">Budget: ${budget}</p>
-          <p className="text-gray-400">Deadline: {deadline}</p>
-          <p className="text-gray-400">Bids: {bidsCount || 0}</p>
+          <p className="text-gray-400"><span className="font-medium">Category</span>: {category}</p>
+          <p className="text-gray-400"><span className="font-medium">Budget</span>: ${budget}</p>
+          <p className="text-gray-400"><span className="font-medium">Deadline</span>: {deadline}</p>
+          <p className="text-gray-400"><span className="font-medium">Bids</span>: {bidsCount || 0}</p>
         </div>
         <div className="card-actions flex flex-col items-end space-y-2">
           <Link to={`/task/${_id}`}>

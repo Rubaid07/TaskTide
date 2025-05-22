@@ -9,8 +9,6 @@ const MyTasks = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user?.email) return;
-
     fetch("http://localhost:3000/my-tasks", {
       method: "POST",
       headers: {
@@ -36,7 +34,7 @@ const MyTasks = () => {
 
   return (
     <div className="max-w-5xl mx-auto mt-5 p-6">
-      <h1 className="text-3xl font-bold w-max mb-12 bg-gradient-to-r from-sky-400 to-indigo-500 bg-clip-text text-transparent">My Tasks</h1>
+      <h1 className="text-3xl font-bold w-max mb-12 bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">My Tasks</h1>
 
       {tasks.length === 0 ? (
         <p className="text-gray-500">You haven't posted any tasks yet.</p>
