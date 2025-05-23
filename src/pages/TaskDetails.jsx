@@ -83,7 +83,7 @@ const TaskDetails = () => {
         </span>
       </p>
       {isExpired && (
-        <span className="text-xs w-max bg-red-100 text-red-500 px-4 flex justify-center items-center rounded-full font-semibold">
+        <span className="text-xs w-max bg-red-100 text-red-500 px-4 py-1 flex justify-center items-center rounded-full font-semibold">
           Expired
         </span>
       )}

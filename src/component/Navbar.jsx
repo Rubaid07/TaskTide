@@ -3,6 +3,7 @@ import tasktide from '../assets/TaskTide.png'
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
+import { CgLogOut } from 'react-icons/cg';
 const Navbar = () => {
   const { user, logOut } = use(AuthContext)
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
@@ -80,7 +81,7 @@ const Navbar = () => {
                   onClick={handleLogout}
                   className="btn btn-sm bg-red-500 text-white hover:bg-red-600 mt-2"
                 >
-                  Log Out
+                  <CgLogOut size={16} />Log Out
                 </button>
               </div>
             </div>
