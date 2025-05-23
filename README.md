@@ -1,12 +1,43 @@
-# React + Vite
+# 🎯 TaskTide – Freelance Task Marketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and modern platform where users can post freelance tasks, and freelancers can bid on those tasks based on skills, budget, and deadlines.
 
-Currently, two official plugins are available:
+## 🌐 Live Link
+🔗 [Live Demo](https://tasktide07.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 **Firebase Authentication**: Email/password and Google-based login/signup system.
+- 📋 **Post & Manage Tasks**: Users can add, update, or delete tasks. All CRUD operations are secured by authentication.
+- 💼 **Browse & Bid on Tasks**: Tasks are browsable by all users. Authenticated users can bid on tasks.
+- 🛡️ **Protected Routes**: Pages like Add Task, My Tasks, and Task Details are accessible only after login.
+- 📱 **Responsive Design**: Fully responsive for mobile, tablet, and desktop views.
+- ⏳ **Deadline-Based Sorting**: Featured tasks are shown based on earliest deadlines.
+- ☀️🌙 **Dark/Light Theme Toggle**: Seamless theme switching on the homepage.
+- ✨ **Bonus Features**: Integrated SweetAlert2 & Toast for notifications, and a clean UI with React & Tailwind.
+
+---
+
+## 🗂️ Tech Stack
+
+- **Frontend**: React, React Router, Tailwind CSS, DaisyUI, Firebase Auth
+- **Backend**: Node.js, Express.js, MongoDB, CORS
+
+---
+
+## NPM Packages Used
+
+```bash
+"react-router"
+"firebase"
+"react-toastify"
+"sweetalert2"
+"daisyui"
+"react-icons"
+"react-slick"
+"slick-carousel"
+"react-simple-typewriter"
+"react-countup"
+"tailwindcss"
