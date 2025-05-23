@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import Loading from "../component/Loading";
 
 const UpdateTask = () => {
   const { id } = useParams();
@@ -8,7 +9,7 @@ const UpdateTask = () => {
   const [task, setTask] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/tasks/${id}`)
+    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`)
       .then((res) => res.json())
       .then((data) => setTask(data));
   }, [id]);
@@ -25,7 +26,7 @@ const UpdateTask = () => {
       budget: form.budget.value,
     };
 
-    fetch(`http://localhost:3000/tasks/${id}`, {
+    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +48,7 @@ const UpdateTask = () => {
       });
   };
 
-  if (!task) return <div className="text-center mt-20">Loading...</div>;
+  if (!task) return <Loading></Loading>;
 
   return (
     <div className="max-w-2xl mx-auto my-12 p-8 bg-base-100 rounded-lg shadow-xl">

@@ -9,7 +9,7 @@ const MainLayouts = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="min-h-[calc(100vh-318px)] md:w-10/12 mx-auto">
+            <div className="min-h-[calc(100vh-358px)] md:w-10/12 mx-auto">
                 {
                     navigation.state === "loading"? <Loading></Loading>: <Outlet></Outlet>
                 }

@@ -33,12 +33,12 @@ const Login = () => {
                 navigate(`${location.state ? location.state : "/"}`)
             })
             .catch(error => {
-
+                toast.error(error.message)
             })
     }
     return (
-        <div className="flex items-center justify-center min-h-[calc(100vh-364px)]">
-            <div className="card bg-base-100 mt-8 w-full max-w-sm mx-auto shrink-0 shadow-2xl">
+        <div className="flex items-center justify-center my-10">
+            <div className="card border border-base-200 bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-xl">
                 <h1 className='text-center font-bold text-2xl mt-4'>Login your account</h1>
                 <form onSubmit={handleLogin} className="card-body">
                     <fieldset className="fieldset">

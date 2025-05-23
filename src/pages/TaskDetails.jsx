@@ -12,7 +12,7 @@ const TaskDetails = () => {
   const email = user.email
 
   useEffect(() => {
-    fetch(`http://localhost:3000/tasks/${id}`)
+    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTask(data)
@@ -24,7 +24,7 @@ const TaskDetails = () => {
   }, [id, email]);
 
   const handleBid = () => {
-  fetch(`http://localhost:3000/tasks/${id}/bid`, {
+  fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}/bid`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",

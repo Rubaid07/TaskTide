@@ -31,7 +31,7 @@ const AddTask = () => {
       bidders: []
     };
 
-    fetch('http://localhost:3000/tasks', {
+    fetch('https://task-marketplace-server-olive.vercel.app/tasks', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

@@ -7,7 +7,7 @@ const Featured = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/tasks/featured')
+        fetch('https://task-marketplace-server-olive.vercel.app/tasks/featured')
             .then(res => res.json())
             .then(data => {
                 setTasks(data);

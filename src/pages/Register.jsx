@@ -35,7 +35,7 @@ const Register = () => {
                     toast.success("Sign in successfully")
                     navigate("/")
                 }).catch(error => {
-                    // toast.error(error)
+                    toast.error(error.message)
                     setUser(user)
                 })
                 setUser(user)
@@ -53,11 +53,11 @@ const Register = () => {
                 navigate("/")
             })
             .catch(error => {
-
+                toast.error(error.message)
             })
     }
     return (
-        <div className="flex items-center justify-center min-h-[calc(100vh-364px)]">
+        <div className="flex items-center my-10 justify-center ">
             <div className="card bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-xl">
                 <h1 className='text-center font-bold text-2xl mt-4'>Register</h1>
                 <form onSubmit={handleRegister} className="card-body">

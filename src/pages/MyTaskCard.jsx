@@ -15,18 +15,24 @@ const MyTaskCard = ({ task, tasks, setTasks }) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/tasks/${_id}`, {
-          method: "DELETE",
+        fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${_id}`, {
+          method: "DELETE"
         })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
-              Swal.fire("Deleted!", "Your task has been deleted.", "success");
-              const remaining = tasks.filter((t) => t._id !== _id);
-              setTasks(remaining);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              const remainingTask = tasks.filter((t) => t._id !== _id);
+              setTasks(remainingTask);
             }
           });
       }
@@ -34,31 +40,40 @@ const MyTaskCard = ({ task, tasks, setTasks }) => {
   };
 
   return (
-    <div className="card card-side bg-base-200 shadow-md p-4">
-      <div className="flex w-full justify-between items-center">
-        <div>
-          <h2 className="text-xl font-semibold">{title}</h2>
-          <p className="text-gray-400"><span className="font-medium">Category</span>: {category}</p>
-          <p className="text-gray-400"><span className="font-medium">Budget</span>: ${budget}</p>
-          <p className="text-gray-400"><span className="font-medium">Deadline</span>: {deadline}</p>
-          <p className="text-gray-400"><span className="font-medium">Bids</span>: {bidsCount || 0}</p>
-        </div>
-        <div className="card-actions flex flex-col items-end space-y-2">
-          <Link to={`/task/${_id}`}>
-            <button className="btn btn-sm bg-gray-700 text-white"><GrView size={20} /></button>
+    <tr>
+      <td className="font-medium">{title}</td>
+      <td className="text-center">{category}</td>
+      <td className="text-center">${budget}</td>
+      <td className="text-center">{deadline}</td>
+      <td className="text-center">
+          {bidsCount || 0}
+      </td>
+      <td className="">
+        <div className="flex justify-end space-x-1">
+          <Link
+            to={`/task/${_id}`}
+            className="btn btn-ghost btn-sm"
+            title="View"
+          >
+            <GrView size={16} className="text-gray-400" />
           </Link>
-          <Link to={`/update-task/${_id}`}>
-            <button className="btn btn-sm btn-info"><FaEdit size={20} /></button>
+          <Link
+            to={`/update-task/${_id}`}
+            className="btn btn-ghost btn-sm"
+            title="Edit"
+          >
+            <FaEdit size={16} className="text-blue-400" />
           </Link>
           <button
             onClick={() => handleDelete(_id)}
-            className="btn btn-sm bg-red-400"
+            className="btn btn-ghost btn-sm"
+            title="Delete"
           >
-            <MdDelete size={20} />
+            <MdDelete size={16} className="text-red-400" />
           </button>
         </div>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 };
 
