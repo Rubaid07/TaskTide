@@ -43,6 +43,7 @@ const TaskDetails = () => {
   if (!task) {
     return <Loading></Loading>
   }
+  const isExpired = new Date(task.deadline) < new Date();
 
   return (
   <div className="max-w-3xl mx-auto py-6 px-4 space-y-6 border border-base-200 rounded-xl shadow-lg md:my-20 my-10">
@@ -81,6 +82,11 @@ const TaskDetails = () => {
           ${task.budget}
         </span>
       </p>
+      {isExpired && (
+        <span className="text-xs w-max bg-red-100 text-red-500 px-4 flex justify-center items-center rounded-full font-semibold">
+          Expired
+        </span>
+      )}
     </div>
     <p className="leading-relaxed pt-2">
       <span className="font-medium text-gray-400">Description</span>: {task.description}
