@@ -6,9 +6,11 @@ TaskTide is a freelance task marketplace where users can post short freelance jo
 
 ## 🌐 Live Links
 
-- 🔗 [Live Client](https://tasktide07.web.app)
-- 🔗 [Live Server (Vercel)](https://tasktide-server.vercel.app)
+- 🔗 [Live site](https://tasktide07.web.app)
 
+## 🌐 Server side Repo Links
+
+- 🔗 (https://github.com/Rubaid07/TaskTide-server)
 ---
 
 ## 🧠 Project Overview
