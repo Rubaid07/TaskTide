@@ -116,4 +116,4 @@ All task operations (Add, Update, Delete) are fully functional. Tasks are sorted
    npm run dev
 
 🟢 Client will run on: http://localhost:5173
-🟢 Server will run on: http://localhost:3000
+🟢 Server will run on: https://task-marketplace-server-olive.vercel.app

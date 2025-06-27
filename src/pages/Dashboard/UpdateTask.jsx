@@ -10,7 +10,7 @@ const UpdateTask = () => {
   const [task, setTask] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/tasks/${id}`)
+    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`)
       .then((res) => res.json())
       .then((data) => setTask(data));
   }, [id]);
@@ -27,7 +27,7 @@ const UpdateTask = () => {
       budget: form.budget.value,
     };
 
-    fetch(`http://localhost:3000/tasks/${id}`, {
+    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

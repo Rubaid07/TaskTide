@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000', // তোমার backend URL
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://task-marketplace-server-olive.vercel.app', // তোমার backend URL
 });
 
 const useAxiosSecure = () => {

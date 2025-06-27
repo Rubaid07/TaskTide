@@ -10,7 +10,7 @@ const Browse = () => {
   const [selectCategory, setSelectCategory] = useState('')
 
   useEffect(() => {
-    fetch('http://localhost:3000/tasks')
+    fetch('https://task-marketplace-server-olive.vercel.app/tasks')
       .then(res => res.json())
       .then(data => {
         setTasks(data)
