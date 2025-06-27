@@ -44,6 +44,16 @@ const Navbar = () => {
           About Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to='/support'
+          className={({ isActive }) =>
+            isActive ? 'bg-gray-500/10 font-bold ' : ''
+          }
+        >
+          Support
+        </NavLink>
+      </li>
     </>
   );
 
@@ -65,9 +75,6 @@ const Navbar = () => {
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-2">
               {links}
-              {!user && (
-                <Link to='/login' className="btn btn-outline btn-primary btn-sm">Login</Link>
-              )}
             </ul>
           </div>
           <img className="h-10" src={tasktide} alt="TaskTide Logo" />
@@ -90,7 +97,7 @@ const Navbar = () => {
             </svg>
           </label>
           {!user ? (
-            <div className="hidden lg:flex gap-2">
+            <div className="lg:flex gap-2">
               <Link to='/login' className="btn btn-outline border-[#4ba5dc] text-[#4ba5dc] hover:text-white hover:bg-[#4ba5dc]">Login</Link>
             </div>
           ) : (

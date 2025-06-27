@@ -16,6 +16,7 @@ import UpdateTask from "../pages/Dashboard/UpdateTask";
 import Profile from "../pages/Dashboard/Profile";
 import UpdateProfile from "../pages/Dashboard/UpdateProfile";
 import AboutPage from "../pages/About";
+import SupportPage from "../pages/Support";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: '/about',
         element: <AboutPage></AboutPage>
+      },
+      {
+        path: '/support',
+        element: <SupportPage></SupportPage>
       },
       {
         path: '/task/:id',

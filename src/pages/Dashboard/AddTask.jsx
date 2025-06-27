@@ -108,7 +108,7 @@ const AddTask = () => {
 
       <button
           type="submit"
-          className="btn bg-[#4ba5dc] w-full mt-2"
+          className="btn bg-[#4ba5dc] text-white w-full mt-2"
         >
           Add Task
         </button>

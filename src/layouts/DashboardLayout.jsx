@@ -108,7 +108,7 @@ const NavItem = ({ to, icon, text }) => (
   <li>
     <NavLink
       to={to}
-      className={({ isActive }) => isActive ? 'bg-[#4ba5dc] flex items-center p-3 rounded-lg' : 'flex items-center p-3 rounded-lg hover:bg-[#4ba5dc] transition-colors hover:text-white'}
+      className={({ isActive }) => isActive ? 'bg-[#4ba5dc] flex items-center p-3 rounded-lg text-white' : 'flex items-center p-3 rounded-lg hover:bg-[#4ba5dc] transition-colors hover:text-white'}
     >
       <span className="mr-3">{icon}</span>
       <span className="font-medium">{text}</span>
