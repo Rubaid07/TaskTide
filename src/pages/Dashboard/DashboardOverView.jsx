@@ -2,17 +2,18 @@ import { useEffect, useState, useContext } from 'react';
 import { FaTasks, FaUserCheck, FaCheckCircle, FaHome } from 'react-icons/fa';
 import { FiPieChart } from 'react-icons/fi';
 import { AuthContext } from '../../provider/AuthProvider';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell } from 'recharts';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const DashboardOverview = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [dashboardData, setDashboardData] = useState({
-    stats: null,
+    stats: {},
     chartData: [],
     categoryData: [],
   });
+
   const [loading, setLoading] = useState(true);
 
   const colors = ['#6366F1', '#8B5CF6', '#EC4899', '#F59E0B'];
@@ -20,24 +21,25 @@ const DashboardOverview = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const [statsRes, categoryRes] = await Promise.all([
-          axiosSecure.get(`/dashboard/stats?email=${user.email}`),
-          axiosSecure.get(`/dashboard/categories?email=${user.email}`),
-        ]);
+        const statsRes = await axiosSecure.get(`/dashboard/stats?email=${user.email}`);
+        const categoryRes = await axiosSecure.get(`/dashboard/categories?email=${user.email}`);
+
+        console.log('✅ Stats:', statsRes.data);
+        console.log('✅ Categories:', categoryRes.data);
 
         const stats = statsRes.data;
 
-        // Prepare chart data based on available stats
         const chartData = [
-          { name: 'Total Tasks', value: stats.totalTasks },
-          { name: 'Active Tasks', value: stats.activeTasks },
-          { name: 'Active Bids', value: stats.activeBids },
+          { name: 'Total Tasks', value: stats?.totalTasks || 0 },
+          { name: 'Active Tasks', value: stats?.activeTasks || 0 },
+          { name: 'Active Bids', value: stats?.activeBids || 0 },
         ];
+
 
         setDashboardData({
           stats,
           chartData,
-          categoryData: Array.isArray(categoryRes.data) ? categoryRes.data : [],
+          categoryData: Array.isArray(categoryRes.data) ? categoryRes.data : []
         });
       } catch (err) {
         console.error('Failed to load dashboard data:', err);
@@ -60,6 +62,7 @@ const DashboardOverview = () => {
   }
 
   const { stats, chartData, categoryData } = dashboardData;
+  console.log(categoryData);
 
   return (
     <div className="space-y-6">
@@ -80,17 +83,17 @@ const DashboardOverview = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <StatCard
           title="Total Tasks"
-          value={stats.totalTasks}
+          value={stats?.totalTasks}
           icon={<FaTasks className="text-indigo-500" />}
         />
         <StatCard
           title="Active Tasks"
-          value={stats.activeTasks}
+          value={stats?.activeTasks}
           icon={<FaUserCheck className="text-green-500" />}
         />
         <StatCard
           title="Active Bids"
-          value={stats.activeBids}
+          value={stats?.activeBids}
           icon={<FaCheckCircle className="text-blue-500" />}
         />
       </div>
