@@ -16,6 +16,9 @@ import Profile from "../pages/Dashboard/Profile";
 import UpdateProfile from "../pages/Dashboard/UpdateProfile";
 import AboutPage from "../pages/About";
 import SupportPage from "../pages/Support";
+import TermsOfService from "../component/TermsOfService";
+import PrivacyPolicy from "../component/PrivacyPolicy";
+import CookiePolicy from "../component/CookiePolicy";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +41,18 @@ export const router = createBrowserRouter([
       {
         path: '/support',
         element: <SupportPage></SupportPage>
+      },
+      {
+        path: '/terms',
+        element: <TermsOfService></TermsOfService>
+      },
+      {
+        path: '/privacy',
+        element: <PrivacyPolicy></PrivacyPolicy>
+      },
+      {
+        path: '/cookie',
+        element: <CookiePolicy></CookiePolicy>
       },
       {
         path: '/task/:id',
