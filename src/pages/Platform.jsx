@@ -32,7 +32,7 @@ const Platform = () => {
       </h2>
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {highlights.map((item, i) => (
-          <div key={i} className="bg-base-200 p-6 rounded-lg shadow hover:shadow-md transition">
+          <div key={i} className="box p-6 rounded-lg shadow hover:shadow-md transition">
             <div className="mb-3">{item.icon}</div>
             <h3 className="font-semibold text-lg text mb-2">{item.title}</h3>
             <p className="text-sm text-base-content/70">{item.description}</p>

@@ -2,9 +2,9 @@ import { FaUsers, FaLightbulb, FaHandshake, FaChartLine } from 'react-icons/fa';
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen my-10">
+    <div className="md:my-10 my-5">
       {/* Hero Section */}
-      <section className="bg-base-100 py-20">
+      <section className="bg-base-100 pb-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text">About Our Company</h1>
           <p className="text-xl max-w-3xl mx-auto text">
@@ -105,19 +105,6 @@ const AboutPage = () => {
             bio="Product strategist who bridges the gap between business needs and technical solutions."
             imgSrc="https://randomuser.me/api/portraits/men/75.jpg"
           />
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text mb-6">Ready to work with us?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text">
-            Let's discuss how we can help your business achieve its goals.
-          </p>
-          <button className="bg-info text-white cursor-pointer font-semibold px-8 py-3 rounded-lg hover:bg-sky-500 transition duration-300">
-            Contact Us
-          </button>
         </div>
       </section>
     </div>

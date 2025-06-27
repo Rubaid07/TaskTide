@@ -35,7 +35,7 @@ const TaskCard = ({ task }) => {
       )}
       </div>
 
-      <div className="flex justify-between items-center mt-3 pt-3 border-t">
+      <div className="flex justify-between items-center mt-3 pt-3 border-t border-gray-700">
         <p className="text-sm font-medium flex justify-center gap-3 items-center text">
           {
             photo ? (

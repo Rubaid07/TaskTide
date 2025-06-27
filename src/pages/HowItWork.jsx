@@ -52,7 +52,7 @@ const HowItWorks = () => {
         {steps.map((card, index) => (
           <div
             key={index}
-            className="bg-base-100 border border-base-300 p-6 rounded-xl shadow-md text-center hover:shadow-lg transition"
+            className="box p-6 rounded-xl shadow-md text-center hover:shadow-lg transition"
           >
             {card.icon}
             <h3 className="text-lg font-semibold text mb-2">{card.title}</h3>
