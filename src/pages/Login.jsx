@@ -9,7 +9,6 @@ const Login = () => {
     const { signInWithGoogle } = useContext(AuthContext)
     const [error, setError] = useState("")
     const location = useLocation()
-    // console.log(location);
 
     const handleLogin = e => {
         e.preventDefault()

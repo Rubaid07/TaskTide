@@ -1,4 +1,3 @@
-// src/layouts/DashboardLayout.jsx
 import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import {
@@ -24,7 +23,6 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    // This ensures theme is fully initialized before rendering
     setIsThemeReady(true);
   }, []);
   if (!isThemeReady) {

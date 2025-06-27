@@ -1,4 +1,3 @@
-// src/component/Footer.jsx
 import React from 'react';
 import { Link } from 'react-router';
 import tasktideLogo from '../assets/TaskTide.png'; 

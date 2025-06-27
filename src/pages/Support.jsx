@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { FaSearch, FaQuestionCircle, FaTicketAlt, FaBook, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaSearch, FaQuestionCircle, FaBook } from 'react-icons/fa';
 
 const SupportPage = () => {
   const [activeTab, setActiveTab] = useState('faq');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFaq, setActiveFaq] = useState(null);
 
-  // Sample FAQ data
   const faqs = [
     {
       id: 1,
@@ -29,75 +28,12 @@ const SupportPage = () => {
       answer: "You can cancel your subscription anytime from your account settings. Go to 'Billing' and select 'Cancel Subscription'."
     }
   ];
-
-  // Filter FAQs based on search query
   const filteredFaqs = faqs.filter(faq => 
     faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
     faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  // Contact form state
-  const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
   const handleFaqToggle = (id) => {
     setActiveFaq(activeFaq === id ? null : id);
-  };
-
-  const handleContactChange = (e) => {
-    const { name, value } = e.target;
-    setContactForm({
-      ...contactForm,
-      [name]: value
-    });
-  };
-
-  const validateContactForm = () => {
-    const errors = {};
-    
-    if (!contactForm.name.trim()) errors.name = 'Name is required';
-    if (!contactForm.email.trim()) {
-      errors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
-      errors.email = 'Please enter a valid email';
-    }
-    if (!contactForm.subject.trim()) errors.subject = 'Subject is required';
-    if (!contactForm.message.trim()) errors.message = 'Message is required';
-    
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleContactSubmit = (e) => {
-    e.preventDefault();
-    
-    if (validateContactForm()) {
-      setIsSubmitting(true);
-      
-      // Simulate form submission
-      setTimeout(() => {
-        console.log('Contact form submitted:', contactForm);
-        setIsSubmitting(false);
-        setSubmitSuccess(true);
-        setContactForm({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-        
-        // Reset success message after 5 seconds
-        setTimeout(() => setSubmitSuccess(false), 5000);
-      }, 1500);
-    }
   };
 
   return (

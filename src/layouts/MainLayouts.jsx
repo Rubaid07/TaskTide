@@ -1,4 +1,3 @@
-// src/layouts/MainLayouts.jsx
 import React, { useEffect, useState } from 'react';
 import Navbar from '../component/Navbar';
 import { Outlet, useNavigation } from 'react-router';

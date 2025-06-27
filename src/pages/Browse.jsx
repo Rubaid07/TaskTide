@@ -1,22 +1,28 @@
-// src/pages/Browse.jsx
 import React, { useEffect, useState } from 'react';
 import TaskCard from './TaskCard';
 import Loading from '../component/Loading';
 import { Typewriter } from 'react-simple-typewriter';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const Browse = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectCategory, setSelectCategory] = useState('')
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch('https://task-marketplace-server-olive.vercel.app/tasks')
-      .then(res => res.json())
-      .then(data => {
-        setTasks(data)
+    axiosSecure.get('/tasks')
+      .then(res => {
+        console.log('Data received:', res.data);
+        setTasks(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching tasks:", err);
         setLoading(false);
       });
   }, []);
+
   if (loading) return <Loading></Loading>;
 
   const filterTask = selectCategory === 'All' || !selectCategory

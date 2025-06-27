@@ -1,4 +1,3 @@
-// src/pages/Dashboard/AddTask.jsx
 import React, { use } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../provider/AuthProvider';

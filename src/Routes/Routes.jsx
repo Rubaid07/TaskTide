@@ -1,4 +1,3 @@
-// src/Routes/Routes.jsx
 import { createBrowserRouter } from "react-router";
 import MainLayouts from "../layouts/MainLayouts";
 import Home from "../pages/Home";
