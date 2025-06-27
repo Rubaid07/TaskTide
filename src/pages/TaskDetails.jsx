@@ -1,3 +1,4 @@
+// src/pages/TaskDetails.jsx
 import { useParams } from "react-router";
 import { use, useEffect, useState } from "react";
 import { FaCalendarAlt, FaHeart, FaTag } from "react-icons/fa";
@@ -12,7 +13,7 @@ const TaskDetails = () => {
   const email = user.email
 
   useEffect(() => {
-    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`)
+    fetch(`http://localhost:3000/tasks/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTask(data)
@@ -24,20 +25,24 @@ const TaskDetails = () => {
   }, [id, email]);
 
   const handleBid = () => {
-  fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}/bid`, {
-    method: "PATCH",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ userEmail: email }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-  if (data.success) {
-      setTask(data.task);
-    setBid(true);
-  }
-});
+ fetch(`http://localhost:3000/tasks/${id}/bid`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    userEmail: email,
+    bidAmount: 50,
+    message: "I'd love to do this task!"
+  }),
+})
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      setBid(true);
+      setTask(prev => ({ ...prev, bidsCount: (prev.bidsCount || 0) + 1 }));
+    }
+  });
 };
 
   if (!task) {
@@ -55,13 +60,13 @@ const TaskDetails = () => {
       className="w-16 h-16 rounded-full object-cover shadow-sm"
     />
     <div>
-      <h2 className="text-2xl font-bold text-sky-400">{task?.name}</h2>
+      <h2 className="text-2xl font-bold text">{task?.name}</h2>
       <p className="text-gray-400 text-sm">{task?.email}</p>
     </div>
   </div>
 
   <div className="space-y-4">
-    <h1 className="md:text-3xl text-2xl font-medium">{task.title}</h1>
+    <h1 className="md:text-3xl text-2xl font-medium text">{task.title}</h1>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-400">
       <p className="flex items-center font-medium gap-3">
         Category:

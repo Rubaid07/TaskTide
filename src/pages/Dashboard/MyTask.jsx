@@ -1,44 +1,54 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
-import Loading from "../component/Loading";
-import MyTaskCard from "./MyTaskCard";
-import { Link } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
+import Loading from "../../component/Loading";
+import MyTaskCard from "../MyTaskCard";
+import { Link, useNavigate } from "react-router";
 import { LuNotebookText } from "react-icons/lu";
+import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyTasks = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading: authLoading } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch("https://task-marketplace-server-olive.vercel.app/my-tasks", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({ email: user.email })
-    })
-      .then(res => res.json())
-      .then(data => {
-        setTasks(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setLoading(false);
-      });
-  }, [user?.email]);
+    const fetchTasks = async () => {
+      try {
+        if (!user?.email) {
+          navigate('/login');
+          return;
+        }
 
-  if (loading) return <Loading />;
+        setLoading(true);
+        const response = await axiosSecure.get(`/my-tasks?email=${user.email}`);
+        setTasks(response.data.reverse());
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+        toast.error("Failed to load tasks");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (!authLoading) {
+      fetchTasks();
+    }
+  }, [user, authLoading, navigate, axiosSecure]);
+
+  if (authLoading || loading) return <Loading />;
 
   return (
     <div className="max-w-6xl mx-auto mt-5 py-6 px-4">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+        <h1 className="text-2xl md:text-3xl font-bold text-info">
           My Tasks
         </h1>
         {tasks.length > 0 && (
-          <span className="badge bg-sky-600 text-white">
-            {tasks.length} Task
+          <span className="badge badge-info">
+            {tasks.length} Task{tasks.length !== 1 ? 's' : ''}
           </span>
         )}
       </div>
@@ -48,14 +58,14 @@ const MyTasks = () => {
           <div className="card-body items-center text-center py-12">
             <LuNotebookText size={50} />
             <h3 className="mt-4 text-lg font-medium text-gray-500">No tasks yet</h3>
-            <p className="mt-2 text-gray-500 dark:text-gray-400">You haven't posted any tasks yet. Get started by creating a new task.</p>
+            <p className="mt-2 text-gray-500">You haven't posted any tasks yet. Get started by creating a new task.</p>
             <div className="mt-6">
               <Link
-                to="/add-task"
-                className="btn bg-sky-500 text-white"
-              >
-                New Task
-              </Link>
+        to="/add-task"
+        className="btn btn-primary"
+      >
+        New Task
+      </Link>
             </div>
           </div>
         </div>

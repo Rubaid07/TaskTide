@@ -1,3 +1,4 @@
+// src/pages/MyTaskCard.jsx
 import { FaEdit } from "react-icons/fa";
 import { GrView } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
@@ -18,7 +19,7 @@ const MyTaskCard = ({ task, tasks, setTasks }) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${_id}`, {
+        fetch(`http://localhost:3000/tasks/${_id}`, {
           method: "DELETE"
         })
           .then((res) => res.json())
@@ -48,28 +49,16 @@ const MyTaskCard = ({ task, tasks, setTasks }) => {
       <td className="text-center">
           {bidsCount || 0}
       </td>
-      <td className="">
+       <td className="">
         <div className="flex justify-end space-x-1">
-          <Link
-            to={`/task/${_id}`}
-            className="btn btn-ghost btn-sm"
-            title="View"
-          >
-            <GrView size={16} className="text-gray-400" />
+          <Link to={`/task/${_id}`} className="btn btn-ghost btn-sm" title="View">
+            <GrView size={16} className="text-base-content/70" />
           </Link>
-          <Link
-            to={`/update-task/${_id}`}
-            className="btn btn-ghost btn-sm"
-            title="Edit"
-          >
-            <FaEdit size={16} className="text-blue-400" />
+          <Link to={`/update-task/${_id}`} className="btn btn-ghost btn-sm" title="Edit">
+            <FaEdit size={16} className="text-info" />
           </Link>
-          <button
-            onClick={() => handleDelete(_id)}
-            className="btn btn-ghost btn-sm"
-            title="Delete"
-          >
-            <MdDelete size={16} className="text-red-400" />
+          <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-sm" title="Delete">
+            <MdDelete size={16} className="text-error" />
           </button>
         </div>
       </td>

@@ -1,9 +1,12 @@
+// src/pages/Dashboard/AddTask.jsx
 import React, { use } from 'react';
 import { toast } from 'react-toastify';
-import { AuthContext } from '../provider/AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
+import { Navigate, useNavigate } from 'react-router';
 
 const AddTask = () => {
   const { user } = use(AuthContext)
+  const navigate = useNavigate()
 
   const handleAddTask = e => {
     e.preventDefault()
@@ -31,7 +34,7 @@ const AddTask = () => {
       bidders: []
     };
 
-    fetch('https://task-marketplace-server-olive.vercel.app/tasks', {
+    fetch('http://localhost:3000/tasks', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -43,14 +46,14 @@ const AddTask = () => {
         if (data.insertedId) {
           toast.success('Task added successfully')
         }
-        form.reset()
+        navigate('/my-tasks')
       })
   }
   const today = new Date();
   const formatedToday = today.toISOString().split('T')[0];
   return (
-    <div className="max-w-2xl mx-auto my-12 p-8 bg-base-100 rounded-lg shadow-xl">
-      <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-sky-300 to-indigo-700 bg-clip-text text-transparent">Add a New Task</h2>
+    <div className="max-w-2xl mx-auto my-12 p-8 bg-base-100 rounded-lg shadow-xl border border-base-300">
+      <h2 className="text-3xl font-bold text-center mb-6 text-[#4ba5dc]">Add a New Task</h2>
 
       <form onSubmit={handleAddTask} className="grid grid-cols-1 gap-5">
         <input
@@ -103,9 +106,9 @@ const AddTask = () => {
           />
         </div>
 
-        <button
+      <button
           type="submit"
-          className="btn bg-sky-500 text-white hover:bg-sky-600 w-full mt-2"
+          className="btn bg-[#4ba5dc] w-full mt-2"
         >
           Add Task
         </button>

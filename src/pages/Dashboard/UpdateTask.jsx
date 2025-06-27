@@ -1,7 +1,8 @@
+// src/pages/Dashboard/UpdateTask.jsx
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import Loading from "../component/Loading";
+import Loading from "../../component/Loading";
 
 const UpdateTask = () => {
   const { id } = useParams();
@@ -9,7 +10,7 @@ const UpdateTask = () => {
   const [task, setTask] = useState(null);
 
   useEffect(() => {
-    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`)
+    fetch(`http://localhost:3000/tasks/${id}`)
       .then((res) => res.json())
       .then((data) => setTask(data));
   }, [id]);
@@ -26,7 +27,7 @@ const UpdateTask = () => {
       budget: form.budget.value,
     };
 
-    fetch(`https://task-marketplace-server-olive.vercel.app/tasks/${id}`, {
+    fetch(`http://localhost:3000/tasks/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +44,7 @@ const UpdateTask = () => {
             showConfirmButton: false,
             timer: 1500
           });
-          navigate("/my-task");
+          navigate("/my-tasks");
         }
       });
   };
@@ -51,8 +52,8 @@ const UpdateTask = () => {
   if (!task) return <Loading></Loading>;
 
   return (
-    <div className="max-w-2xl mx-auto my-12 p-8 bg-base-100 rounded-lg shadow-xl">
-      <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-sky-300 to-indigo-700 bg-clip-text text-transparent">
+     <div className="max-w-2xl mx-auto my-12 p-8 bg-base-100 rounded-lg shadow-xl">
+      <h2 className="text-3xl font-bold text-center mb-6 text-info">
         Update Task
       </h2>
 
@@ -111,11 +112,11 @@ const UpdateTask = () => {
         </div>
 
         <button
-          type="submit"
-          className="btn bg-sky-500 text-white hover:bg-sky-600 w-full mt-2"
-        >
-          Update Task
-        </button>
+        type="submit"
+        className="btn btn-info text-white w-full mt-2"
+      >
+        Update Task
+      </button>
       </form>
     </div>
   );

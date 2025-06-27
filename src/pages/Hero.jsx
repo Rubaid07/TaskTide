@@ -44,9 +44,8 @@ const Hero = () => {
                                 backgroundImage: `url(${slide.image})`
                             }}
                         >
-                            <div className="absolute inset-0 bg-black/60"></div>
-
-                            <div className="relative z-10 flex flex-col justify-center items-center text-center text-white h-full px-4">
+                            <div className="absolute inset-0 bg-neutral/60"></div>
+                            <div className="relative z-10 flex flex-col justify-center items-center text-center text-neutral-content h-full px-4">
                                 <h1 className="text-3xl md:text-5xl font-bold mb-4">{slide.title}</h1>
                                 <p className="text-lg text-gray-300 mb-6 max-w-3xl">{slide.description}</p>
                             </div>

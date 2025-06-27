@@ -1,16 +1,29 @@
 @import "tailwindcss";
 @plugin "daisyui";
-ul{
-    gap: 20px;
+
+[data-theme="light"] .footer-text {
+  @apply text-gray-800 hover:text-teal-400
 }
+[data-theme="dark"] .text {
+  @apply text-[#bbc7e8]
+}
+[data-theme="dark"] .box {
+  @apply bg-[#182334]
+}
+
+ul {
+  gap: 20px;
+}
+
 .hero-slider .slick-prev::before,
-.hero-slider .slick-next::before{
+.hero-slider .slick-next::before {
   border-radius: 50%;
   z-index: 1;
   opacity: 1 !important;
 }
 
-.hero-slider .slick-prev, .slick-next {
+.hero-slider .slick-prev,
+.slick-next {
   z-index: 1;
 }
 

@@ -1,15 +1,21 @@
+// src/Routes/Routes.jsx
 import { createBrowserRouter } from "react-router";
 import MainLayouts from "../layouts/MainLayouts";
 import Home from "../pages/Home";
-import AddTask from "../pages/AddTask";
-import MyTask from "../pages/MyTask";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
 import PrivateRoute from "../provider/PrivateRoute";
 import Browse from "../pages/Browse";
 import TaskDetails from "../pages/TaskDetails";
-import UpdateTask from "../pages/UpdateTask";
+import DashboardOverView from "../pages/Dashboard/DashboardOverView";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyTasks from "../pages/Dashboard/MyTask";
+import AddTask from "../pages/Dashboard/AddTask";
+import UpdateTask from "../pages/Dashboard/UpdateTask";
+import Profile from "../pages/Dashboard/Profile";
+import UpdateProfile from "../pages/Dashboard/UpdateProfile";
+import AboutPage from "../pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -26,27 +32,13 @@ export const router = createBrowserRouter([
         element: <Browse></Browse>
       },
       {
-        path: '/add-task',
-        element: <PrivateRoute>
-          <AddTask></AddTask>
-        </PrivateRoute>
-      },
-      {
-        path: '/my-task',
-        element: <PrivateRoute>
-          <MyTask></MyTask>
-        </PrivateRoute>
+        path: '/about',
+        element: <AboutPage></AboutPage>
       },
       {
         path: '/task/:id',
         element: <PrivateRoute>
           <TaskDetails></TaskDetails>
-        </PrivateRoute>
-      },
-      {
-        path: '/update-task/:id',
-        element: <PrivateRoute>
-          <UpdateTask></UpdateTask>
         </PrivateRoute>
       },
       {
@@ -59,4 +51,34 @@ export const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '/',
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+      {
+        path: 'dashboard',
+        Component: DashboardOverView
+      },
+      {
+        path: 'my-tasks',
+        Component: MyTasks
+      },
+      {
+        path: 'add-task',
+        Component: AddTask
+      },
+      {
+        path: '/update-task/:id',
+        Component: UpdateTask
+      },
+      {
+        path: 'profile',
+        Component: Profile
+      },
+      {
+        path: 'update-profile',
+        Component: UpdateProfile
+      }
+    ]
+  }
 ]);

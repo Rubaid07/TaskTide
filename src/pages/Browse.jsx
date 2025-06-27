@@ -1,3 +1,4 @@
+// src/pages/Browse.jsx
 import React, { useEffect, useState } from 'react';
 import TaskCard from './TaskCard';
 import Loading from '../component/Loading';
@@ -9,7 +10,7 @@ const Browse = () => {
   const [selectCategory, setSelectCategory] = useState('')
 
   useEffect(() => {
-    fetch('https://task-marketplace-server-olive.vercel.app/tasks')
+    fetch('http://localhost:3000/tasks')
       .then(res => res.json())
       .then(data => {
         setTasks(data)
@@ -25,9 +26,9 @@ const Browse = () => {
   return (
     <div className="md:w-10/12 mx-auto my-12 px-4">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
-        <h2 className="md:text-3xl text-2xl font-bold w-max bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent">
+        <h2 className="md:text-3xl text-2xl font-bold text">
           <Typewriter
-            words={['Browse All Tasks', 'Find Your Next Opportunity ', 'Start Bidding Today! ']}
+            words={['Browse All Tasks', 'Find Your Next Opportunity', 'Start Bidding Today']}
             loop={0}
             cursor
             cursorStyle="_"

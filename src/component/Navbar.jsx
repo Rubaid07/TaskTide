@@ -1,89 +1,109 @@
-import React, { use, useEffect, useState } from 'react';
-import tasktide from '../assets/TaskTide.png'
+import React, { useContext } from 'react';
+import tasktide from '../assets/TaskTide.png';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { CgLogOut } from 'react-icons/cg';
+import { useTheme } from '../provider/ThemeProvider';
+
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext)
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
-  const handleTheme = e => {
-    const newTheme = e.target.checked ? 'dark' : 'light'
-    setTheme(newTheme)
-  }
-  useEffect(() => {
-    document.querySelector('html').setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-  const links = <>
-    <NavLink to='/' className={({ isActive }) => isActive ? 'underline underline-offset-7 text-sky-500 font-semibold' : ''}>Home</NavLink>
-    <NavLink to='/browse-task' className={({ isActive }) => isActive ? 'underline underline-offset-7 text-sky-500 font-semibold' : ''}>Browse Task</NavLink>
-    <NavLink to='/add-task' className={({ isActive }) => isActive ? 'underline underline-offset-7 text-sky-500 font-semibold' : ''}>Add Task</NavLink>
-    <NavLink to='/my-task' className={({ isActive }) => isActive ? 'underline underline-offset-7 text-sky-500 font-semibold' : ''}>My Task</NavLink>
-  </>
+  const { user, logOut } = useContext(AuthContext);
+  const { theme, toggleTheme } = useTheme();
+  const handleTheme = () => {
+    toggleTheme();
+  };
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to='/'
+          className={({ isActive }) =>
+            isActive ? 'bg-gray-500/10 font-bold ' : ''
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to='/browse-task'
+          className={({ isActive }) =>
+            isActive ? 'bg-gray-500/10 font-bold ' : ''
+          }
+        >
+          Browse Task
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to='/about'
+          className={({ isActive }) =>
+            isActive ? 'bg-gray-500/10 font-bold ' : ''
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
+    </>
+  );
+
   const handleLogout = () => {
     logOut()
-    .then(()=> {
-      toast.success("Logged out successfully")
-    }).catch(error => {
-      // console.log(error);
-    })
-  }
+      .then(() => toast.success("Logged out successfully"))
+      .catch(console.error);
+  };
+
   return (
-    <div className='bg-base-100 shadow-md'>
+    <div className='bg-base-100/90 shadow-md sticky top-0 z-10 backdrop-blur-sm'>
       <div className="navbar md:w-10/12 mx-auto">
         <div className="navbar-start">
-          <div className="dropdown block  lg:hidden">
+          <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 pb-5 shadow-md">
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-2">
               {links}
-              {user ? ("") : (<>
-              <Link to='/login' className="md:btn md:px-[30px] md:py-[15px]  border border-sky-400 hover:bg-sky-400 hover:text-white md:text-sky-400 md:border-sky-400 text-sky-400 rounded-sm px-3 py-2">Login</Link>
-              <Link to='/register' className="md:btn md:px-[30px] md:py-[15px] md:bg-sky-400 bg-sky-400 hover:bg-sky-500 md:text-white md:flex rounded-sm px-3 py-2 text-white">Register</Link>
-              </>)}
+              {!user && (
+                <Link to='/login' className="btn btn-outline btn-primary btn-sm">Login</Link>
+              )}
             </ul>
           </div>
-          <img className='md:w-50 w-30' src={tasktide} alt="" />
+          <img className="h-10" src={tasktide} alt="TaskTide Logo" />
         </div>
+
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 gap-4">
             {links}
           </ul>
         </div>
-        <div className="navbar-end">
-          <label className="cursor-pointer grid place-items-center mr-4">
-            <input type="checkbox" checked={theme === 'dark'} onChange={handleTheme} className=" toggle-info toggle theme-controller  row-start-1 col-start-1 col-span-2" />
-          </label>
 
+        <div className="navbar-end gap-2">
+          <label className="swap swap-rotate btn btn-ghost btn-circle">
+            <input type="checkbox" checked={theme === 'dark'} onChange={handleTheme} />
+            <svg className="swap-on fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Z" />
+            </svg>
+            <svg className="swap-off fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+            </svg>
+          </label>
           {!user ? (
-            <div className='hidden lg:flex'>
-              <Link to='/login' className="md:btn md:px-[30px] md:py-[15px] md:bg-transparent  border border-sky-400 hover:bg-sky-400 hover:text-white md:text-sky-400 md:border-sky-400 text-sky-400 rounded-sm px-3 py-2  mr-3">Login</Link>
-              <Link to='/register' className="md:btn md:px-[30px] md:py-[15px] md:bg-sky-400 bg-sky-400 hover:bg-sky-500 md:text-white md:flex rounded-sm px-3 py-2 text-white">Register</Link>
+            <div className="hidden lg:flex gap-2">
+              <Link to='/login' className="btn btn-outline border-[#4ba5dc] text-[#4ba5dc] hover:text-white hover:bg-[#4ba5dc]">Login</Link>
             </div>
           ) : (
-            <div className="relative group inline-block">
-              <div className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} alt="profile" />
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full border-2 border-sky-300">
+                  <img alt={user.displayName} src={user?.photoURL} />
                 </div>
               </div>
-
-              <div className="absolute right-0 mt-2 w-56 bg-base-100 p-4 shadow-lg rounded-md 
-              opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-              transition-all duration-200 z-50">
-                <p className="text-sm font-semibold">{user?.displayName}</p>
-                <p className="text-xs text-gray-400 mb-2">{user?.email}</p>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-sm bg-red-500 text-white hover:bg-red-600 mt-2"
-                >
-                  <CgLogOut size={16} />Log Out
-                </button>
-              </div>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                <li onClick={handleLogout}><a className="text-error">Logout <CgLogOut size={16} className="ml-1" /></a></li>
+              </ul>
             </div>
           )}
         </div>
